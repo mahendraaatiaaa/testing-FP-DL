@@ -1,0 +1,266 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Body styling */
+body {
+  background-color: white; /* Ensure plain white background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #333;
+  transition: background-color 0.3s ease;
+  padding: 20px; /* Add padding for smaller screens */
+  flex-direction: column;
+}
+
+/* Container styling */
+.container {
+  text-align: center;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Heading styles */
+h1 {
+  font-size: 2.5rem;
+  color: #4caf50;
+  margin-bottom: 20px;
+  animation: slideInFromTop 1s ease-out;
+}
+
+h3 {
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+/* Guidelines Section */
+.conditions {
+  background-color: #f0f8ff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.conditions ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.conditions li {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s ease;
+}
+
+.conditions li:hover {
+  background-color: #e0f7fa;
+  cursor: pointer;
+}
+
+/* Upload Section */
+.upload-section {
+  margin-top: 30px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.upload-section label {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+  animation: fadeIn 1.5s ease-out;
+}
+
+.upload-section input[type="file"] {
+  padding: 10px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f0f8ff;
+  border: 2px solid #4caf50;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: fadeIn 2s ease-out;
+}
+
+.upload-section input[type="file"]:hover {
+  background-color: #80e4c0;
+  border-color: #66bb6a;
+}
+
+.upload-section button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.upload-section button:hover {
+  background-color: #45a049;
+}
+
+/* Taskbars Section */
+.taskbars {
+  margin-top: 40px;
+}
+
+#taskbarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.taskbar {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.taskbar span {
+  flex: 1;
+  padding: 0 10px;
+  font-size: 1rem;
+  color: #333;
+  text-align: left;
+}
+
+.taskbar .fill {
+  height: 100%;
+  background-color: #4caf50;
+  width: 0%;
+  transition: width 0.5s ease-in-out;
+  border-radius: 5px 0 0 5px;
+}
+
+/* Animation Styles */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes taskbarAnimation {
+  0% {
+    width: 0%;
+    background-color: #ffeb3b;
+  }
+  50% {
+    background-color: #4caf50;
+  }
+  100% {
+    background-color: #ffeb3b;
+    width: 100%;
+  }
+}
+
+/* Media Queries for responsiveness */
+
+/* For devices with a max width of 600px (like smartphones) */
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .container {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .upload-section input[type="file"] {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .upload-section button {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+
+  .taskbar {
+    height: 25px;
+  }
+
+  .taskbar span {
+    font-size: 0.9rem;
+  }
+}
+
+/* For devices with a max width of 768px (like tablets) */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .container {
+    padding: 30px;
+    width: 90%;
+  }
+
+  .upload-section input[type="file"] {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .upload-section button {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+  }
+}
+
+/* For devices with a max width of 1024px (like smaller laptops) */
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 40px;
+    width: 80%;
+  }
+
+  .upload-section input[type="file"] {
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+
+  .upload-section button {
+    font-size: 1.2rem;
+    padding: 12px 24px;
+  }
+}

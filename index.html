@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Prediction</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <h1>Model Prediction</h1>
+    <div id="output"></div>
+
+    <div id="taskbar-container" class="taskbar-container"></div>
+
+    <script>
+        // Fungsi untuk menangani file gambar dan mengirimkannya ke backend
+        document.getElementById('imageInput').addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            const formData = new FormData();
+            formData.append('image', file);
+            
+            const response = await fetch('/classify', {
+                method: 'POST',
+                body: formData
+            });
+
+            const results = await response.json();  // Ambil hasil dari backend
+
+            // Tampilkan hasil prediksi
+            const taskbarContainer = document.getElementById('taskbar-container');
+            taskbarContainer.innerHTML = '';  // Clear previous taskbars
+
+            // Update output
+            const output = document.getElementById('output');
+            output.innerHTML = `
+                <h3>Prediksi Kelas:</h3>
+                <p><strong>${results.results[0].label}</strong></p>
+                <h4>Akurasi (Confidence):</h4>
+                <p>${results.results[0].probability.toFixed(2)}%</p>
+            `;
+
+            // Menampilkan taskbars untuk setiap kelas
+            results.results.forEach(item => {
+                const taskbar = document.createElement('div');
+                taskbar.classList.add('taskbar');
+
+                const taskbarFill = document.createElement('div');
+                taskbarFill.classList.add('taskbar-fill');
+                taskbarFill.style.width = `${item.probability}%`;  // Set lebar taskbar sesuai dengan confidence
+                taskbarFill.textContent = `${item.label}: ${item.probability.toFixed(2)}%`;  // Menampilkan nama kelas dan akurasi
+
+                taskbar.appendChild(taskbarFill);
+                taskbarContainer.appendChild(taskbar);
+            });
+        });
+    </script>
+
+    <!-- Input untuk memilih gambar -->
+    <input type="file" id="imageInput" accept="image/*">
+    <img id="image" style="max-width: 100%; margin-top: 20px;"/>
+
+</body>
+</html>

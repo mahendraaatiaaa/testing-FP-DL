@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+torch
+tensorflow
+numpy
+pillow
+python-multipart  # Untuk upload file
+requests
+gunicorn
